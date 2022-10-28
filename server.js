@@ -12,13 +12,13 @@ const image = require('./controllers/image')
 const db = knex({
     client: 'pg',
     connection: {
-      connectionString : process.env.DATABASE_URL,
-      ssl:true,
+      host : '127.0.0.1',
+      port : 5432,
+      user : 'postgres',
+      password : 'left4dead',
+      database : 'smartbrain'
     }
   });
-
-  
-  
 
 const app = express()
 
@@ -39,6 +39,6 @@ app.put('/image', (req, res) => {image.handleImage(req, res, db)})
 
 app.post('/imageurl', (req, res) => {image.handleApiCall(req, res)})
 
-app.listen(process.env.PORT || 3000, ()=> {
+app.listen(3000, ()=> {
     console.log('I hear you!')
 })
